@@ -1,28 +1,14 @@
+// -- API -- // 
 import {getIngredients, getPlayerData} from './services/services.mjs'
+
+// -- UTILITIES -- //
+import {separator, printTitle, round, printUnderlined} from './utils/utils.mjs'
+
+// -- Classes -- //
 import Ingredients from './classes/Ingredients.mjs'
 import Cauldron from './classes/Cauldron.mjs'
 import PotionBag from './classes/PotionBag.mjs';
-
-const separator = "-------------------------";
-
-function printTitle(title)
-{
-    console.log("\n\n=========================================\n");
-
-    // Dark blue, bold and underlined.
-    console.log('\x1b[34m\x1b[1m\x1b[4m%s\x1b[0m', title);
-}
-
-// Rounds the given number to 2 decimals.
-function round(num) {
-    return Math.round(num * 100) / 100;
-}
-
-function printUnderlined(text)
-{
-    // TODO
-    console.log('"\x1b[4m"\x1b[0m', title);
-}
+import Character from './classes/Character.mjs';
 
 const execute = async() => {
 
@@ -39,17 +25,47 @@ const execute = async() => {
     // Create potion bag
     
     // Validate fetched data.
-    if (!playerData?.players[0]) throw new Error("There has been an error fetching playerData. No players found.");
+    const player = playerData?.players[0]; 
 
-    let red_pouch = playerData?.players[0].pouch_red;
+    if (!player) throw new Error("There has been an error fetching playerData. No players found.");
+
+    let red_pouch = player.pouch_red;
 
     const potionBag = PotionBag.create(red_pouch, cauldron);
     
     // Show the potions inside potionsBag instance.
     showPotions(potionBag);
+
+    // ------------------ //
+
+    // Create the character
+    const joseph = Character.from(player, potionBag.potions);
+    showCharacter(joseph);
+
 }
 
 execute();
+
+const showCharacter = (character) => {
+ 
+    console.log('\n')
+    console.log(character.fullName)
+    console.log('---------------------------------');
+
+    console.log(`Health:       ${round(character.health)}`)
+    console.log(`Magick:       ${round(character.magick)}`)
+    console.log(`Stamina:      ${round(character.stamina)}`)
+
+    let {potions} = character;
+
+    potions.forEach((potion, index) => {
+
+        console.log(`Potion ${index+1}: ${potion.name}`)
+    });
+
+    console.log("\n")
+    
+}
 
 const showPotions = (potionBag) => {
     
@@ -65,7 +81,6 @@ const showPotions = (potionBag) => {
     });
 
 }
-
 
 const potion_debugger = async () => {
 
