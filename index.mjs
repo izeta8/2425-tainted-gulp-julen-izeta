@@ -13,6 +13,16 @@ function printTitle(title)
     console.log('\x1b[34m\x1b[1m\x1b[4m%s\x1b[0m', title);
 }
 
+// Rounds the given number to 2 decimals.
+function round(num) {
+    return Math.round(num * 100) / 100;
+}
+
+function printUnderlined(text)
+{
+    // TODO
+    console.log('"\x1b[4m"\x1b[0m', title);
+}
 
 const execute = async() => {
 
@@ -33,13 +43,28 @@ const execute = async() => {
 
     let red_pouch = playerData?.players[0].pouch_red;
 
-    const potionsBag = PotionBag.create(red_pouch, cauldron);
-
-    console.log(potionsBag);
-
+    const potionBag = PotionBag.create(red_pouch, cauldron);
+    
+    // Show the potions inside potionsBag instance.
+    showPotions(potionBag);
 }
 
 execute();
+
+const showPotions = (potionBag) => {
+    
+    let {potions} = potionBag;
+
+    potions.forEach(potion => {
+
+        console.log(potion.name)
+        console.log(`Value:       ${round(potion.value)}`)
+        console.log(`Weight:      ${round(potion.weight)}`)
+        console.log(`Time:        ${round(potion.time)}`)
+        console.log('------------------------------');
+    });
+
+}
 
 
 const potion_debugger = async () => {

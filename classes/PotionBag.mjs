@@ -15,7 +15,7 @@ class PotionBag {
         let usedIngredients = [];
         
         // For each ingredient possible mixes, we create the posion and push to the returnPotions array.
-        ingredients.forEach((mainIngredient, index) => {
+        ingredients.forEach(mainIngredient => {
             
             usedIngredients.push(mainIngredient);
             
