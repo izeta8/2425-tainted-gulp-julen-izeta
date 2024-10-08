@@ -1,4 +1,4 @@
-import Potion from './classes/Potion.mjs'
+import Potion from './Potion.mjs'
 
 class Cauldron {
 
