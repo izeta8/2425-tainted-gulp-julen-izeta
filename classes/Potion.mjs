@@ -9,7 +9,7 @@ class Potion {
     }
 
     static with(effect, weight, value) {
-        const type = effect.type === 'beneficial' ? "Potion" : "Posion";
+        const type = effect.type === 'beneficial' ? "Potion" : "Poison";
         const potion_name = `${type} of ${effect.name}`;
         const time = 10;
         return new Potion(potion_name, value, weight, time);
