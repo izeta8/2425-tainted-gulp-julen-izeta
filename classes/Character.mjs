@@ -87,7 +87,6 @@ class Character {
                     
                     if (potion.name.toLowerCase().includes("health")) { // Health potion
                         this.health += potion.value * poisonCoefficent;
-                        this.health += 2000;
                         appliedEffect = "health";
                     } else if (potion.name.toLowerCase().includes("magicka")) { // Magick potion
                         this.magick += potion.value * poisonCoefficent;
