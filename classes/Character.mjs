@@ -67,7 +67,7 @@ class Character {
         // Reset flag
         this.gameHasEnded = false;
         
-        printTitle(`${this.fullName} is about to drink all his potions.\n`)
+        printTitle(`D. Joseph's Sip\n`)
 
         // Loop for each potion that the user has to apply each effect.
         this.potions.forEach((potion, index) => {

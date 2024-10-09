@@ -50,9 +50,9 @@ execute();
 
 const showCharacter = (character) => {
  
-    console.log('\n')
-    printUnderlined(character.fullName)
+    printTitle("C2. Joseph's creation and list of its content \n");
 
+    printUnderlined(character.fullName)
     console.log(`Health:       ${round(character.health)}`)
     console.log(`Magick:       ${round(character.magick)}`)
     console.log(`Stamina:      ${round(character.stamina)}`)
@@ -68,6 +68,8 @@ const showCharacter = (character) => {
 
 const showPotions = (potionBag) => {
     
+    printTitle("B2. Potions list. \n")
+
     let {potions} = potionBag;
 
     potions.forEach(potion => {
