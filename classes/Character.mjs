@@ -34,24 +34,28 @@ class Character {
         {
             printColor(`\n${this.fullName} has found the Potion of Sanity. His mind is healed. Well done!!`, "green");
             this.gameHasEnded = true;
+            return;
         }
 
         // The health attribute is less or equal to 0: Joseph has died.
         if (this.health <= 0) {
             printColor(`\n${this.fullName} has died`, "red");
             this.gameHasEnded = true;
+            return;
         }
 
         // The magick attribute is less or equal to 0: Joseph has been drained of all his magic and X.G's chaos spell finishes him off.
         if (this.magick <= 0) {
             printColor(`\n${this.fullName} has been drained of all his magic and X.G's chaos spell finishes him off.`, "red");
             this.gameHasEnded = true;
+            return;
         }
 
         // The stamina attribute is less than or equal to 0: Joseph is completely exhausted and can no longer move.
         if (this.stamina <= 0) {
             printColor(`\n${this.fullName} has lost all his stamina. He feels completely exhausted.`, "red");
             this.gameHasEnded = true;
+            return;
         }
 
         // If all the potions on the list are drunk, and none of the above is true, the game is over.
@@ -59,6 +63,7 @@ class Character {
         {
             printColor(`\n${this.fullName} has drunk all the potions of the bag. He has won!`, "green");
             this.gameHasEnded = true;
+            return;
         }
     }
 
