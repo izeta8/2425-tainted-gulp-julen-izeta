@@ -36,9 +36,7 @@ class PotionBag {
         // ["Elves Ear", "Ectoplasm", "Deathbell", "Crimson Nirnroot"]
         
         return new PotionBag(returnPotions);
-
     }
-
 
 }
 

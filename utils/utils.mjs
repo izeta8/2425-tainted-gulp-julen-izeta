@@ -1,9 +1,11 @@
 
-const separator = "-------------------------";
+const separator = "------------------------------";
 
-function printTitle(title)
+function printTitle(title, header=false)
 {
-    console.log("\n\n=========================================\n");
+    console.log("\n");
+
+    header && console.log("========================================\n");
 
     // Dark blue, bold and underlined.
     console.log('\x1b[34m\x1b[1m\x1b[4m%s\x1b[0m', title);
@@ -16,8 +18,21 @@ function round(num) {
 
 function printUnderlined(text)
 {
-    // TODO
-    console.log('"\x1b[4m"\x1b[0m', title);
+    console.log('\x1b[4m%s\x1b[0m', text);
 }
 
-export {separator, printTitle, round, printUnderlined}
+function printColor(text, color)
+{
+    const colors = {
+        green: '\x1b[32m%s\x1b[0m',
+        red: '\x1b[41m%s\x1b[0m',
+    }
+    
+    if (Object.keys(colors).includes(color)) {
+        console.log(colors[color], text);
+    } else {
+        console.log(text);
+    }
+}
+
+export {separator, printTitle, round, printUnderlined, printColor}

@@ -4,7 +4,7 @@ import {getIngredients, getPlayerData} from './services/services.mjs'
 // -- UTILITIES -- //
 import {separator, printTitle, round, printUnderlined} from './utils/utils.mjs'
 
-// -- Classes -- //
+// -- CLASSES -- //
 import Ingredients from './classes/Ingredients.mjs'
 import Cauldron from './classes/Cauldron.mjs'
 import PotionBag from './classes/PotionBag.mjs';
@@ -29,9 +29,9 @@ const execute = async() => {
 
     if (!player) throw new Error("There has been an error fetching playerData. No players found.");
 
-    let red_pouch = player.pouch_red;
+    let {pouch_red, pouch_green, pouch_yellow, pouch_aged} = player;
 
-    const potionBag = PotionBag.create(red_pouch, cauldron);
+    const potionBag = PotionBag.create(pouch_red, cauldron);
     
     // Show the potions inside potionsBag instance.
     showPotions(potionBag);
@@ -40,8 +40,10 @@ const execute = async() => {
 
     // Create the character
     const joseph = Character.from(player, potionBag.potions);
+
     showCharacter(joseph);
 
+    joseph.drinkEmAll();
 }
 
 execute();
@@ -49,8 +51,7 @@ execute();
 const showCharacter = (character) => {
  
     console.log('\n')
-    console.log(character.fullName)
-    console.log('---------------------------------');
+    printUnderlined(character.fullName)
 
     console.log(`Health:       ${round(character.health)}`)
     console.log(`Magick:       ${round(character.magick)}`)
@@ -62,8 +63,6 @@ const showCharacter = (character) => {
 
         console.log(`Potion ${index+1}: ${potion.name}`)
     });
-
-    console.log("\n")
     
 }
 
@@ -77,7 +76,7 @@ const showPotions = (potionBag) => {
         console.log(`Value:       ${round(potion.value)}`)
         console.log(`Weight:      ${round(potion.weight)}`)
         console.log(`Time:        ${round(potion.time)}`)
-        console.log('------------------------------');
+        console.log(separator);
     });
 
 }
